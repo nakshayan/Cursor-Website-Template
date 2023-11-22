@@ -11,6 +11,14 @@
     animation: spin 2s linear infinite, oscillate 2s ease-in-out infinite;
 }
 
+@keyframes spin {
+    from { rotate: 0deg; }
+
+    50% { scale : 1 1.2; }
+
+    to { rotate: 360deg; }
+}
+
 #blurcursorbackground {
     height: 100%;
     width: 100%;
@@ -18,12 +26,4 @@
     z-index: 2;
     
     backdrop-filter: blur(200px);
-}
-
-@keyframes spin {
-    from { rotate: 0deg; }
-
-    50% { scale : 1 1.2; }
-
-    to { rotate: 360deg; }
 }
