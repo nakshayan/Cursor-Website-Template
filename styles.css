@@ -1,0 +1,29 @@
+#cursorbackground {
+    position: absolute;
+    background-color: white;
+    background: linear-gradient(#05ffa1, #fffb96);
+    width: 1000px;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    animation: spin 2s linear infinite, oscillate 2s ease-in-out infinite;
+}
+
+#blurcursorbackground {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    
+    backdrop-filter: blur(200px);
+}
+
+@keyframes spin {
+    from { rotate: 0deg; }
+
+    50% { scale : 1 1.2; }
+
+    to { rotate: 360deg; }
+}
