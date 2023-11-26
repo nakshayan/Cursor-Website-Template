@@ -1,3 +1,30 @@
+@font-face {
+    font-family: Inter;
+    src: url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: black;
+    color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+
+    overflow: hidden;
+  }
+
+  #text {
+    font-size: 5rem;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+  }
+  
 #cursorbackground {
     position: absolute;
     background-color: white;
