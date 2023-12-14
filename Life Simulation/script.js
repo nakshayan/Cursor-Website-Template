@@ -88,30 +88,50 @@ createParticles = (number, colour) => {
     return group;
 }
 
+/**
+ * rules: Updates the velocity and position of each particle based on the interaction with other particles
+ * @param {array} particleType1 - The first group of particles
+ * @param {array} particleType2 - The second group of particles
+ * @param {number} particleInteraction - The interaction force between the particles
+ * No return value
+ */
 rules = (particleType1, particleType2, particleInteraction) => {
+    // Loop over each particle in the first group
     for (let a of particleType1) {
+        // Loop over each particle in the second group
         for (let b of particleType2) {
+            // Make sure we're not comparing a particle with itself
             if (a !== b) {
+                // Calculate the x and y distance between the two particles
                 let distanceX = a.posX - b.posX;
                 let distanceY = a.posY - b.posY;
+
+                // Calculate the absolute distance between the two particles
                 let absDistance = Math.sqrt(Math.pow(distanceX, 2) + Math.pow(distanceY, 2));
 
+                // Set the interaction force
                 let g = particleInteraction;
 
+                // Only apply the force if the particles are within a certain distance of each other
                 if (absDistance > 0 && absDistance < ((Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height, 2)))*80/500)) {
+                    // Calculate the force between the two particles
                     let curForce = g * a.mass * b.mass / absDistance;
+
+                    // Calculate the x and y components of the force
                     let forceX = 0;
                     let forceY = 0;
                     forceX += curForce * distanceX;
                     forceY += curForce * distanceY;
 
-                    // Update velocity based on force
+                    // Update the velocity of the particle based on the force
                     a.velocityX += forceX * 0.5;
                     a.velocityY += forceY * 0.5;
+
+                    // Update the position of the particle based on its velocity
                     a.posX += a.velocityX;
                     a.posY += a.velocityY;
 
-                    // Stop particles from leaving the canvas
+                    // If the particle has moved off the edge of the canvas, reverse its velocity to make it bounce back
                     if (a.posX < 0 || a.posX > canvas.width) {
                         a.velocityX *= -1;
                     }
