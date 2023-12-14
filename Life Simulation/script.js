@@ -149,6 +149,17 @@ yellow = createParticles(20, "yellow");
 red = createParticles(20, "red");
 
 /**
+ * doRules: Calls the rules function to update the particles
+ * No parameters
+ * No return value
+ */
+doRules = () => {
+    rules(yellow, yellow, 0.2);
+    rules(red, red, -0.2);
+    rules(yellow, red, 0.5);
+}
+
+/**
  * updateScreen: Updates the screen by clearing the canvas and drawing all particles
  * No parameters
  * No return value
@@ -159,9 +170,7 @@ updateScreen = (timestamp) => {
     if (!lastUpdateTime || timestamp - lastUpdateTime > delay) {
         lastUpdateTime = timestamp;
 
-        rules(yellow, yellow, 0.2);
-        rules(red, red, -0.2);
-        rules(yellow, red, 0.5);
+        doRules();
 
         m.clearRect(0, 0, canvas.width, canvas.height);
         m.fillStyle = "Black";
