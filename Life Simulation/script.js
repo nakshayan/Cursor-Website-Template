@@ -147,10 +147,10 @@ rules = (particleType1, particleType2, particleInteraction) => {
 }
 
 // Create groups of particles
-red = createParticles(300, "red");
-blue = createParticles(300, "blue");
-green = createParticles(300, "green");
-white = createParticles(300, "white");
+red = createParticles(200, "red");
+blue = createParticles(200, "blue");
+green = createParticles(200, "green");
+white = createParticles(200, "white");
 
 /**
  * doRules: Calls the rules function to update the particles (basic nuclei model)
@@ -165,11 +165,11 @@ makeNuclei = () => {
 }
 
 /**
- * makeLife1: Calls the rules function to update the particles (life model 1)
+ * makeNuclei2: Calls the rules function to update the particles (life model 1)
  * No parameters
  * No return value
  */
-makeLife1 = () => {
+makeNuclei2 = () => {
     rules(white, white, 4);
     rules(blue, blue, 4);
     rules(white, blue, -2);
@@ -186,7 +186,7 @@ makeLife1 = () => {
  * No parameters
  * No return value
  */
-makeLife2 = () => {
+makeNucleiAlive = () => {
     rules(white, white, 2);
     rules(blue, blue, 4);
     rules(white, blue, -2);
@@ -199,7 +199,7 @@ makeLife2 = () => {
  * No parameters
  * No return value
  */
-makeLife3 = () => {
+makeFireFlies = () => {
     rules(white, white, 0.6);
     rules(white, red, 0.965);
     rules(white, green, -0.565);
@@ -232,7 +232,7 @@ updateScreen = (timestamp) => {
     if (!lastUpdateTime || timestamp - lastUpdateTime > delay) {
         lastUpdateTime = timestamp;
 
-        makeLife2();
+        makeNucleiAlive();
 
         m.clearRect(0, 0, canvas.width, canvas.height);
         m.fillStyle = "Black";
