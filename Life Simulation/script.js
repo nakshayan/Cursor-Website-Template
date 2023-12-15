@@ -30,8 +30,10 @@ window.addEventListener('resize', resizeCanvas);
  * No return value
  */
 drawParticles = (posX, posY, colour, size) => {
+    m.beginPath();
+    m.arc(posX, posY, size/2, 0, Math.PI * 2, false);
     m.fillStyle = colour;
-    m.fillRect(posX, posY, size, size);
+    m.fill();
 }
 
 // Array to hold all particles
@@ -124,8 +126,8 @@ rules = (particleType1, particleType2, particleInteraction) => {
                     forceY += curForce * distanceY;
 
                     // Update the velocity of the particle based on the force
-                    a.velocityX += forceX * 0.5;
-                    a.velocityY += forceY * 0.5;
+                    a.velocityX = (a.velocityX + forceX) * 0.5;
+                    a.velocityY = (a.velocityY + forceY) * 0.5;
 
                     // Update the position of the particle based on its velocity
                     a.posX += a.velocityX;
@@ -144,19 +146,36 @@ rules = (particleType1, particleType2, particleInteraction) => {
     }
 }
 
-// Create a group of 2 yellow particles
-yellow = createParticles(20, "yellow");
-red = createParticles(20, "red");
+// Create groups of particles
+red = createParticles(200, "red");
+blue = createParticles(300, "blue");
+green = createParticles(200, "green");
+white = createParticles(200, "white");
 
 /**
  * doRules: Calls the rules function to update the particles
  * No parameters
  * No return value
  */
-doRules = () => {
-    rules(yellow, yellow, 0.2);
-    rules(red, red, -0.2);
-    rules(yellow, red, 0.5);
+makeNuclei = () => {
+    rules(white, red, -0.1);
+    rules(red, red, -0.1);
+    rules(red, blue, -0.01);
+    rules(blue, red, 0.01);
+}
+
+/**
+ * doRules: Calls the rules function to update the particles
+ * No parameters
+ * No return value
+ */
+makeLife1 = () => {
+    rules(white, white, 4);
+    rules(blue, blue, 4);
+    rules(white, blue, -2);
+    rules(blue, white, -2);
+    rules(white, green, -3);
+    rules(green, green, -1);
 }
 
 /**
@@ -170,7 +189,7 @@ updateScreen = (timestamp) => {
     if (!lastUpdateTime || timestamp - lastUpdateTime > delay) {
         lastUpdateTime = timestamp;
 
-        doRules();
+        makeLife1();
 
         m.clearRect(0, 0, canvas.width, canvas.height);
         m.fillStyle = "Black";
