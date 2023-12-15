@@ -147,13 +147,13 @@ rules = (particleType1, particleType2, particleInteraction) => {
 }
 
 // Create groups of particles
-red = createParticles(200, "red");
+red = createParticles(300, "red");
 blue = createParticles(300, "blue");
-green = createParticles(200, "green");
-white = createParticles(200, "white");
+green = createParticles(300, "green");
+white = createParticles(300, "white");
 
 /**
- * doRules: Calls the rules function to update the particles
+ * doRules: Calls the rules function to update the particles (basic nuclei model)
  * No parameters
  * No return value
  */
@@ -165,7 +165,7 @@ makeNuclei = () => {
 }
 
 /**
- * doRules: Calls the rules function to update the particles
+ * makeLife1: Calls the rules function to update the particles (life model 1)
  * No parameters
  * No return value
  */
@@ -176,6 +176,49 @@ makeLife1 = () => {
     rules(blue, white, -2);
     rules(white, green, -3);
     rules(green, green, -1);
+    rules(white, red, -1);
+    rules(red, red, -0.01);
+    rules(red, blue, 0.1);
+}
+
+/**
+ * makeLife2: Calls the rules function to update the particles (life model 2)
+ * No parameters
+ * No return value
+ */
+makeLife2 = () => {
+    rules(white, white, 2);
+    rules(blue, blue, 4);
+    rules(white, blue, -2);
+    rules(blue, white, -5);
+    rules(blue, red, -1);
+}
+
+/**
+ * makeLife3: Calls the rules function to update the particles (life model 3)
+ * No parameters
+ * No return value
+ */
+makeLife3 = () => {
+    rules(white, white, 0.6);
+    rules(white, red, 0.965);
+    rules(white, green, -0.565);
+    rules(white, blue, 0.375);
+    
+    rules(red, red, -0.635);
+    rules(red, white, -0.31);
+    rules(red, green, 0.65);
+    rules(red, blue, -0.315);
+
+    rules(green, green, -0.205);
+    rules(green, red, 0);
+    rules(green, white, -0.445);
+    rules(green, white, 0.68);
+    
+    rules(blue, blue, 1);
+    rules(blue, green, -0.495);
+    rules(blue, red, 0);
+    rules(blue, white, 1);
 }
 
 /**
@@ -189,7 +232,7 @@ updateScreen = (timestamp) => {
     if (!lastUpdateTime || timestamp - lastUpdateTime > delay) {
         lastUpdateTime = timestamp;
 
-        makeLife1();
+        makeLife2();
 
         m.clearRect(0, 0, canvas.width, canvas.height);
         m.fillStyle = "Black";
