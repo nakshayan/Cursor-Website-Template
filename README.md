@@ -3,7 +3,7 @@
 <h3 align="left">Life Simulation:</h3>
 <p align="left">
   
-  <a href="https://www.youtube.com/embed/bkA1ch_LCx8?si=7UciojNWP1TQ4I9r" target="_blank">
+  <a href="https://www.youtube.com/watch?v=bkA1ch_LCx8&t" target="_blank">
   <img src="https://drive.google.com/uc?export=view&id=1tZlwSIcazgA-uEulzMXz929AFELPZ3Mc" alt="Life Simulation Preview" width="480" height=auto border="10" />
     <BR CLEAR=ALL />
     <br>
