@@ -153,7 +153,7 @@ green = createParticles(200, "green");
 white = createParticles(200, "white");
 
 /**
- * doRules: Calls the rules function to update the particles (basic nuclei model)
+ * makeNuclei: Calls the rules function to update the particles (basic nuclei model)
  * No parameters
  * No return value
  */
@@ -182,7 +182,7 @@ makeNuclei2 = () => {
 }
 
 /**
- * makeLife2: Calls the rules function to update the particles (life model 2)
+ * makeNucleiAlive: Calls the rules function to update the particles (life model 2)
  * No parameters
  * No return value
  */
@@ -195,7 +195,7 @@ makeNucleiAlive = () => {
 }
 
 /**
- * makeLife3: Calls the rules function to update the particles (life model 3)
+ * makeFireFlies: Calls the rules function to update the particles (life model 3)
  * No parameters
  * No return value
  */
